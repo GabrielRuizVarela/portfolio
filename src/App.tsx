@@ -1,6 +1,8 @@
 import React from 'react';
+
 import Navbar from './components/Navbar';
 import About from './components/About';
+import Projects from './components/Projects';
 import './App.css';
 
 function App() {
@@ -9,11 +11,9 @@ function App() {
   return (
     <div className="App w-screen h-screen flex flex-col">
       <Navbar />
-      <div className="section">
+      <div className="sections">
         <About />
-      </div>
-      <div className="section active">
-        <h1 className="w-full h-screen">Section 2</h1>
+        <Projects />
       </div>
     </div>
   );

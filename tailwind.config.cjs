@@ -8,7 +8,6 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        // 'about': "url('/src/assets/stacked-peaks-haikei.svg')",
         'about': "url('/src/assets/blurry-gradient-haikei(1).svg')",
       }
     }

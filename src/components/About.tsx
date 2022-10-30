@@ -1,11 +1,9 @@
 import React from 'react';
-import profileImg from '../assets/profile.jpg';
-import bgSVG from '../assets/blurry-gradient-haikei.svg';
-// About section for my personal portfolio as a web developer
+
 export default function About() {
   return (
     // <div className="hero min-h-screen  bg-cover bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-    <div className="hero min-h-screen">
+    <div className="hero h-screen w-screen">
       {/* <img src={bgSVG} alt="" className="absolute inset-0 w-full h-full" style={{zIndex: -1}}/> */}
       <svg
         id="visual"
@@ -55,7 +53,7 @@ export default function About() {
           <circle cx="1040" cy="234" fill="#000000" r="363" />
         </g>
       </svg>
-      <div className="hero-overlay bg-opacity-70 filter contrast-125 dark:contrast-50 dark:bg-opacity-40 z-0" />
+      <div className="hero-overlay w-screen bg-opacity-70 filter contrast-125 dark:contrast-100 dark:bg-opacity-40 z-0" />
       <div className="hero-content flex-col lg:flex-row">
         {/* <img src={profileImg} className="max-w-sm rounded-lg shadow-2xl" /> */}
         <div className="hero-content text-center text-neutral-content">
