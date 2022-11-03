@@ -31,7 +31,7 @@ export const engineeringProjects = [
     href: 'https://drive.google.com/file/d/1rOASwHCp-RMIGml1D_QBY2APR5RGlX6Q/view?usp=sharing',
   },
   {
-    name: 'Self-Improvement',
+    name: 'Self',
     description: 'Journals and note-taking',
     imageSrc: video,
     video: true,

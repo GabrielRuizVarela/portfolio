@@ -8,10 +8,10 @@ export default function Projects() {
       <div className="bg-gray-100 h-min-screen  bg-stone-900 dark:bg-stone-200 flex align-center sm:h-min min-h-screen">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-            <h2 className="text-2xl font-bold text-gray-200 dark:text-gray-900">
+            <h2 className="text-2xl  font-bold text-gray-200 dark:text-gray-900">
               Web Dev Projects
             </h2>
-            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+            <div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:space-y-0">
               {webProjects.map((callout) => (
                 <div key={callout.name} className="group relative">
                   <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
@@ -36,13 +36,13 @@ export default function Projects() {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 h-min-screen  bg-stone-900 dark:bg-stone-200 flex align-center sm:h-min min-h-screen">
+      <div className="bg-gray-100 h-min-screen  bg-stone-900 dark:bg-stone-200 grid align-center justify-center sm:h-min min-h-screen">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
             <h2 className="text-2xl font-bold text-gray-200 dark:text-gray-900">
               Engineering Projects
             </h2>
-            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+            <div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:space-y-0">
               {engineeringProjects.map((callout) => (
                 <div key={callout.name} className="group relative">
                   <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
@@ -50,7 +50,7 @@ export default function Projects() {
                       <video
                         autoPlay
                         muted
-                        className="group relative h-full w-full object-cover object-center"
+                        className="group relative h-full w-full object-fit object-center"
                       >
                         <source src={video} type="video/webm" />
                       </video>
