@@ -1,6 +1,6 @@
 .sections > div {
   text-align: center;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   flex: none;
 }
 .sections {

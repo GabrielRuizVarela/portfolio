@@ -9,14 +9,14 @@ export default function About() {
         id="visual"
         className="absolute inset-0 dark:filter dark:hue-rotate-15"
         xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="100%"
+        width="100vw"
+        height="100vh"
         version="1.1"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         preserveAspectRatio="xMidYMid slice"
         xmlSpace="preserve"
         enableBackground="new 0 0 50 100"
-        viewBox="0 0 1000 1000"
+        // viewBox="0 0 1000 1000"
         style={{ zIndex: -1 }}
       >
         <defs>

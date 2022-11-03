@@ -36,6 +36,7 @@ export default function Navbar() {
             <label className="swap swap-rotate h-5 self-center">
               {/* <!-- this hidden checkbox controls the state --> */}
               <input
+                name="theme"
                 type="checkbox"
                 onClick={() => {
                   const body = document.querySelector('html');
