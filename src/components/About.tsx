@@ -61,9 +61,10 @@ export default function About() {
 						<h1 className="mb-5 text-5xl font-bold">Hello there</h1>
 
 						<p className="mb-5">
-							I am a web developer with a passion for learning and creating. I
-							am currently working on my portfolio and learning new
-							technologies.
+							I am a Fullstack MERN Dev. Currently looking for a remote position
+							to start my professional career. My last related experience is my
+							time as an intern in the audistellar.xyz project, dealing with
+							minor Gitlab issues in code programmed in C++.
 						</p>
 						{/* <button className="btn btn-primary">Get Started</button> */}
 					</div>
