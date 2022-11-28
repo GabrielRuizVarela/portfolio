@@ -35,7 +35,7 @@ export default function Projects() {
 					</h2>
 					<div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-16 xl:justify-evenly lg:space-y-0">
 						{webProjects.map((callout) => (
-							<div key={callout.name} className="group relative">
+							<div key={callout.name} className="group relative hover:scale-105 transition-transform">
 								<a href={callout.href}>
 									<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
 										<img

@@ -10,9 +10,12 @@ export default function Projects() {
 					<h2 className="text-2xl pb-16 font-bold text-gray-200 dark:text-gray-900">
 						Engineering Projects
 					</h2>
-					<div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:space-y-0">
+					<div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:space-y-0 ">
 						{engineeringProjects.map((callout) => (
-							<div key={callout.name} className="group relative mx-16">
+							<div
+								key={callout.name}
+								className="group relative mx-16 hover:scale-105 transition-transform"
+							>
 								<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
 									{callout.video ? (
 										<video
