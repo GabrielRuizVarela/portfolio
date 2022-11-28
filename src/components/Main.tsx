@@ -8,8 +8,6 @@ import "../App.css";
 import Contact from "./Contact";
 
 function Main() {
-	// const [count, setCount] = useState(0);
-
 	return (
 		<div className="App w-screen h-screen flex flex-col">
 			<Navbar />
