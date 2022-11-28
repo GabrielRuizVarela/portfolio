@@ -11,4 +11,6 @@
   width: 100%;
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
+  max-width: 100vw;
+  overflow-x: hidden;
 }

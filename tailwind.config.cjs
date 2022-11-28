@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'about': "url('/src/assets/blurry-gradient-haikei(1).svg')",
+        'web': "url('/src/assets/images/webdev.svg')", 
       }
     }
   },
