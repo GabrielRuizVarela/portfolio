@@ -17,19 +17,14 @@ function Main() {
 				<div id="about">
 					<About />
 				</div>
-				<motion.div
-					whileInView={{
-						visibility: "visible",
-						opacity: 1,
-					}}
-					viewport={{ root: scrollRef }}
-					// while not in view set opacity to 0
-					// onViewportLeave={(e) => {
-					// 	e?.target.classList.add("zero-opacity");
-					// }}
+				<div
+				// while not in view set opacity to 0
+				// onViewportLeave={(e) => {
+				// 	e?.target.classList.add("zero-opacity");
+				// }}
 				>
 					<Projects />
-				</motion.div>
+				</div>
 				<EngProjects />
 				<div id="skills">
 					<Skills />

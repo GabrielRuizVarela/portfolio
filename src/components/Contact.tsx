@@ -6,25 +6,33 @@ export default function Contact() {
 	return (
 		<div className="w-screen h-screen flex flex-col justify-center items-center bg-gray-900 text-white gap-8 dark:bg-white dark:text-black">
 			<div className="hero min-h-screen">
-				<div className="hero-content flex-col lg:flex-row-reverse">
+				<div className="hero-content flex-col lg:flex-row-reverse m-8 lg:ml-16">
 					<div className="text-center lg:text-left">
-						<motion.h1 
-            whileInView={{ x: [100,0] }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="text-5xl font-bold">
+						<motion.h1
+							viewport={{ once: true }}
+							initial={{ x: "100%" }}
+							whileInView={{ x: ["100%", "0%"] }}
+							transition={{ duration: 0.35, ease: "easeInOut" }}
+							className="text-5xl font-bold"
+						>
 							Am I a good fit for your company or project?
 						</motion.h1>
 						<motion.p
-            whileInView={{ y: [100,0] }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="py-6">
+							viewport={{ once: true }}
+							initial={{ y: "100%" }}
+							whileInView={{ y: ["100%", "0%"] }}
+							transition={{ duration: 0.35, ease: "easeInOut" }}
+							className="py-6"
+						>
 							Let me know! I&apos;m always looking for new opportunities to work
 							with great people and fun projects.
 						</motion.p>
 					</div>
 					<motion.div className="flex flex-col items-center">
 						<motion.div
-							whileInView={{ x: [-100,0] }}
+							initial={{ x: "-100%" }}
+							viewport={{ once: true }}
+							whileInView={{ x: ["-100%", "0%"] }}
 							transition={{ duration: 0.35, ease: "easeInOut" }}
 							className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-violet-200 dark:bg-violet-400"
 						>
@@ -62,9 +70,12 @@ export default function Contact() {
 							</div>
 						</motion.div>
 						<motion.div
-            whileInView={{ y: [100,0] }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="flex gap-4 m-4">
+							viewport={{ once: true }}
+							initial={{ y: "100%" }}
+							whileInView={{ y: ["100%", "0%"] }}
+							transition={{ duration: 0.35, ease: "easeInOut" }}
+							className="flex gap-4 m-4"
+						>
 							<a
 								href="
               https://www.linkedin.com/in/GabrielRuizVarela"

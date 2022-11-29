@@ -10,25 +10,31 @@ export default function Projects() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid content-center">
 				<div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32 ">
 					<motion.h2
-          whileInView={{ opacity: [0,1] }}
-          transition={{ duration: 0.55, ease: "easeInOut" }}
-          
-          className="text-2xl pb-6 font-bold text-gray-200 dark:text-gray-900 ">
+						viewport={{ once: true }}
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.55, ease: "easeInOut", delay: 0.3 }}
+						className="text-2xl pb-6 font-bold text-gray-200 dark:text-gray-900 "
+					>
 						Web Dev Projects
 					</motion.h2>
 					<div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-16 xl:justify-evenly lg:space-y-0">
 						{webProjects.map((callout) => (
-							<div>
+							<div key={callout.name}>
 								<div
-									key={callout.name}
 									className="group relative  
                  hover:scale-105 
                  transition-transform"
 								>
 									<a href={callout.href}>
 										<motion.div
-											whileInView={{ x: [500, 0], opacity: 1 }}
-                      transition={{ duration: 0.4 }}
+											viewport={{ once: true }}
+											initial={{ opacity: 0, x: "100%" }}
+											whileInView={{
+												x: ["100%", "0%"],
+												opacity: 1,
+											}}
+											transition={{ duration: 0.4, delay: 0.5 }}
 											className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 
                     lg:aspect-h-1 
                     "
@@ -40,7 +46,9 @@ export default function Projects() {
 											/>
 										</motion.div>
 										<motion.h3
-											whileInView={{ x: [-500, 0], opacity: 1 }}
+											viewport={{ once: true }}
+											initial={{ opacity: 0, x: "-100%" }}
+											whileInView={{ x: ["-100%", "0%"], opacity: 1 }}
 											className="mt-6 text-sm text-gray-500"
 										>
 											<span className="absolute inset-0" />
@@ -48,7 +56,9 @@ export default function Projects() {
 										</motion.h3>
 									</a>
 									<motion.p
-										whileInView={{ x: [-500, 0], opacity: 1 }}
+										viewport={{ once: true }}
+										initial={{ opacity: 0, x: "-100%" }}
+										whileInView={{ x: ["-100%", "0%"], opacity: 1 }}
 										className="text-base font-semibold dark:text-gray-900"
 									>
 										{callout.description}
@@ -59,7 +69,12 @@ export default function Projects() {
 								> */}
 								</div>
 								<motion.button
-                whileInView={{ x: [20,-30,40,-50,0], opacity: [0,1]}}
+									viewport={{ once: true }}
+									initial={{ opacity: 0 }}
+									whileInView={{
+										x: ["20%", "-30%", "40%", "-50%", "0%"],
+										opacity: [0, 1],
+									}}
 									type="button"
 									className="btn btn-outline hover:scale-205 transition-transform m-2 text-2xl"
 								>

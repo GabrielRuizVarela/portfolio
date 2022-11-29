@@ -5,14 +5,6 @@ import video from '../images/video.webm';
 
 export const webProjects = [
   {
-    name: 'Excel Filters',
-    description: 'Build with React, Redux, TypeScript, Firebase, Tailwind.',
-    imageSrc: excel,
-    imageAlt: 'First project image.',
-    href: 'https://gabrielruizvarela.github.io/Excel-Filters/',
-    repo: 'https://github.com/GabrielRuizVarela/Excel-Filters',
-  },
-  {
     name: 'Inventory Manager CRUD',
     description:
       'Frontend: NextJS, ReactJS, TypeScript and MaterialUI. Backend: NodeJS, Express and MongoDB.',
@@ -20,6 +12,14 @@ export const webProjects = [
     imageAlt: 'Second project image.',
     href: 'https://gabrielruizvarela.github.io/A-Photo-Tagging-App/',
     repo: 'https://github.com/GabrielRuizVarela/Inventory-Frontend',
+  },
+  {
+    name: 'Excel Filters',
+    description: 'Build with React, Redux, TypeScript, Firebase, Tailwind.',
+    imageSrc: excel,
+    imageAlt: 'First project image.',
+    href: 'https://gabrielruizvarela.github.io/Excel-Filters/',
+    repo: 'https://github.com/GabrielRuizVarela/Excel-Filters',
   },
 ];
 

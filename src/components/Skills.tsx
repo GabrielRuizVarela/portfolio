@@ -71,8 +71,10 @@ export default function Skills() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="lg:text-center">
 					<motion.p
+						viewport={{ once: true }}
+						initial={{ opacity: 0, scale: 0 }}
 						whileInView={{ opacity: [0, 1], scale: [0, 1] }}
-            transition={{ duration: 0.2 }}
+						transition={{ duration: 0.2 }}
 						className="text-3xl font-bold leading-8 tracking-tight text-gray-200 dark:text-black sm:text-4xl"
 					>
 						Skills
@@ -82,6 +84,8 @@ export default function Skills() {
 				<div className="mt-10 flex flex-wrap container mx-auto px-32 justify-center">
 					{features.map((feature, index) => (
 						<motion.div
+							viewport={{ once: true }}
+							initial={{ opacity: 0 }}
 							whileInView={{ opacity: [0, 1] }}
 							transition={{ duration: 0.5, delay: index * 0.05 }}
 							key={feature.name}

@@ -11,7 +11,9 @@ export default function About() {
 			className="hero h-screen w-screen dark:filter dark:hue-rotate-30"
 			style={{
 				backgroundImage: `url("data:image/svg+xml,${svgString}")`,
-				filter: "",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
 			}}
 		>
 			<div className="hero-overlay w-screen bg-opacity-70 filter contrast-125 dark:contrast-100 dark:bg-opacity-40 z-0" />
@@ -20,7 +22,9 @@ export default function About() {
 					<div className="max-w-md">
 						<span className="tooltip">
 							<motion.h1
-              whileInView={{ opacity: [0, 1], scale: [1.4, 1] }}
+								initial={{ opacity: 0 }}
+								viewport={{ once: true }}
+								whileInView={{ opacity: [0, 1], scale: [1.4, 1] }}
 								className="
             mb-5 text-5xl font-bold
             animate-pulse
@@ -32,8 +36,11 @@ export default function About() {
 						</span>
 
 						<motion.p
-            whileInView={{ opacity: [0, 1], scale: [0.4, 1] }}
-            className="mb-5">
+							initial={{ opacity: 0 }}
+							whileInView={{ opacity: [0, 1], scale: [0.4, 1] }}
+							viewport={{ once: true }}
+							className="mb-5"
+						>
 							I am a Fullstack Developer currently looking for a remote
 							position.
 						</motion.p>

@@ -10,15 +10,19 @@ export default function Projects() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px- grid content-center">
 				<div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
 					<motion.h2
+						initial={{ opacity: 0, scale: 1.1 }}
 						whileInView={{ opacity: [0, 1], scale: [1.1, 1] }}
+						viewport={{ once: true }}
 						transition={{ duration: 0.35, ease: "easeInOut" }}
 						className="text-2xl pb-16 font-bold text-gray-200 dark:text-gray-900"
 					>
 						Engineering Projects
 					</motion.h2>
 					<motion.div
-						whileInView={{ x: [-500, 0], opacity: [0, 1] }}
-						transition={{ duration: 0.4, ease: "circIn" }}
+						viewport={{ once: true }}
+						initial={{ opacity: 0, x: "-100%" }}
+						transition={{ duration: 0.4 }}
+						whileInView={{ x: ["-100%", "0%"], opacity: [0, 1] }}
 						className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:space-y-0 "
 					>
 						{engineeringProjects.map((callout) => (
