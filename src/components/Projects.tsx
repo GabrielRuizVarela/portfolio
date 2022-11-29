@@ -1,59 +1,75 @@
+import { Icon } from "@iconify/react";
 import React from "react";
+import { motion } from "framer-motion";
 import { webProjects } from "../assets/data/projects";
 // import video from '../assets/images/video.webm';
 
 export default function Projects() {
 	return (
-		<div className="h-min-screen bg-stone-900 dark:bg-stone-200  align-center justify-center sm:h-min min-h-screen w-screen">
-			{/* <svg
-        width="100vw"
-        height="100vh"
-        viewBox="0 0 400 300"
-        z={-1}
-        style={{ position: 'relative', top: 0, left: 0, zIndex: -1 }}
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-        // enableBackground="new 0 0 50 100"
-        // result="BackgroundImageFix"
-        className="relative inset-0"
-      >
-        <g clipPath="url(#clip0_1_4)">
-          <rect width="100vw" height="100vw" fill="#FFECEC" />
-          <path d="M0 0L400 300H0V0Z" fill="black" />
-        </g>
-        <defs>
-          <clipPath id="clip0_1_4">
-            <rect width="400" height="300" fill="white" />
-          </clipPath>
-        </defs>
-      </svg> */}
-
+		<div className="h-min-screen bg-black dark:bg-purple-100  align-center justify-center sm:h-min min-h-screen w-screen">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid content-center">
 				<div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32 ">
-					<h2 className="text-2xl pb-6 font-bold text-gray-200 dark:text-gray-900 ">
+					<motion.h2
+          whileInView={{ opacity: [0,1] }}
+          transition={{ duration: 0.55, ease: "easeInOut" }}
+          
+          className="text-2xl pb-6 font-bold text-gray-200 dark:text-gray-900 ">
 						Web Dev Projects
-					</h2>
+					</motion.h2>
 					<div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-16 xl:justify-evenly lg:space-y-0">
 						{webProjects.map((callout) => (
-							<div key={callout.name} className="group relative hover:scale-105 transition-transform">
-								<a href={callout.href}>
-									<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-										<img
-											src={callout.imageSrc}
-											alt={callout.imageAlt}
-											className="h-full w-full object-cover object-center"
-										/>
-									</div>
-									<h3 className="mt-6 text-sm text-gray-500">
-										<a href={callout.href}>
+							<div>
+								<div
+									key={callout.name}
+									className="group relative  
+                 hover:scale-105 
+                 transition-transform"
+								>
+									<a href={callout.href}>
+										<motion.div
+											whileInView={{ x: [500, 0], opacity: 1 }}
+                      transition={{ duration: 0.4 }}
+											className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 
+                    lg:aspect-h-1 
+                    "
+										>
+											<img
+												src={callout.imageSrc}
+												alt={callout.imageAlt}
+												className="h-full w-full object-cover object-center"
+											/>
+										</motion.div>
+										<motion.h3
+											whileInView={{ x: [-500, 0], opacity: 1 }}
+											className="mt-6 text-sm text-gray-500"
+										>
 											<span className="absolute inset-0" />
 											{callout.name}
-										</a>
-									</h3>
-									<p className="text-base font-semibold dark:text-gray-900">
+										</motion.h3>
+									</a>
+									<motion.p
+										whileInView={{ x: [-500, 0], opacity: 1 }}
+										className="text-base font-semibold dark:text-gray-900"
+									>
 										{callout.description}
-									</p>
-								</a>
+									</motion.p>
+									{/* <button
+									type="button"
+									className="btn btn-outline hover:scale-105 transition-transform m-2 text-2xl"
+								> */}
+								</div>
+								<motion.button
+                whileInView={{ x: [20,-30,40,-50,0], opacity: [0,1]}}
+									type="button"
+									className="btn btn-outline hover:scale-205 transition-transform m-2 text-2xl"
+								>
+									<a href={callout.repo}>
+										<div className="text-gray-100 dark:text-gray-900 justify-center items-center flex m-2 hover:scale-110 transition-transform">
+											{/* github icon */}
+											<Icon icon="mdi:github" />
+										</div>
+									</a>
+								</motion.button>
 							</div>
 						))}
 					</div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
 
 const features = [
 	{
@@ -66,17 +67,26 @@ const features = [
 
 export default function Skills() {
 	return (
-		<div className="bg-zinc-900 dark:bg-indigo-300 py-12 h-screen grid content-center w-screen justify-center">
+		<div className="bg-zinc-900 dark:bg-indigo-300 py-12 min-h-screen grid content-center w-screen justify-center">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="lg:text-center">
-					<p className="text-3xl font-bold leading-8 tracking-tight text-gray-200 dark:text-black sm:text-4xl">
+					<motion.p
+						whileInView={{ opacity: [0, 1], scale: [0, 1] }}
+            transition={{ duration: 0.2 }}
+						className="text-3xl font-bold leading-8 tracking-tight text-gray-200 dark:text-black sm:text-4xl"
+					>
 						Skills
-					</p>
+					</motion.p>
 				</div>
 
 				<div className="mt-10 flex flex-wrap container mx-auto px-32 justify-center">
-					{features.map((feature) => (
-						<div key={feature.name} className="drop-shadow-md">
+					{features.map((feature, index) => (
+						<motion.div
+							whileInView={{ opacity: [0, 1] }}
+							transition={{ duration: 0.5, delay: index * 0.05 }}
+							key={feature.name}
+							className="drop-shadow-md"
+						>
 							<div className="flex m-2 mb-1 h-12 w-12 items-center justify-center rounded-md bg-indigo-300 dark:bg-zinc-900 text-black dark:text-white">
 								<Icon
 									icon={feature.icon}
@@ -87,7 +97,7 @@ export default function Skills() {
 							<p className="text-xs leading-6 font-medium text-white dark:text-black">
 								{feature.name}
 							</p>
-						</div>
+						</motion.div>
 					))}
 				</div>
 			</div>

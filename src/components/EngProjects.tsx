@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-boolean-value */
 import React from "react";
+import { motion } from "framer-motion";
 import { engineeringProjects } from "../assets/data/projects";
 import video from "../assets/images/video.webm";
 
@@ -7,10 +9,18 @@ export default function Projects() {
 		<div className="h-min-screen  bg-gray-900 dark:bg-gray-200 grid align-center justify-center sm:h-min min-h-screen w-screen">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px- grid content-center">
 				<div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-					<h2 className="text-2xl pb-16 font-bold text-gray-200 dark:text-gray-900">
+					<motion.h2
+						whileInView={{ opacity: [0, 1], scale: [1.1, 1] }}
+						transition={{ duration: 0.35, ease: "easeInOut" }}
+						className="text-2xl pb-16 font-bold text-gray-200 dark:text-gray-900"
+					>
 						Engineering Projects
-					</h2>
-					<div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:space-y-0 ">
+					</motion.h2>
+					<motion.div
+						whileInView={{ x: [-500, 0], opacity: [0, 1] }}
+						transition={{ duration: 0.4, ease: "circIn" }}
+						className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:space-y-0 "
+					>
 						{engineeringProjects.map((callout) => (
 							<div
 								key={callout.name}
@@ -19,8 +29,8 @@ export default function Projects() {
 								<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
 									{callout.video ? (
 										<video
-											autoPlay
-											muted
+											autoPlay={true}
+											muted={true}
 											className="group relative h-full w-full object-fit object-center"
 										>
 											<source src={video} type="video/webm" />
@@ -44,7 +54,7 @@ export default function Projects() {
 								</p>
 							</div>
 						))}
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</div>

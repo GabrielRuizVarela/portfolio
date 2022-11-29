@@ -1,9 +1,12 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 // a navbar for my personal portfolio as a web developer
 export default function Navbar() {
 	return (
-		<div className="navbar bg-black bg-opacity-20 dark:bg-stone900 dark:bg-opacity-60 h-min fixed lg:px-12 z-10">
+		<motion.div 
+    initial={{ y: -100 }}
+    animate={{ y: 0 }}
+    className="navbar bg-black bg-opacity-20 dark:bg-stone900 dark:bg-opacity-60 h-min fixed lg:px-12 z-10">
 			<div className="flex-1">
 				<span className="btn btn-ghost normal-case text-xl">
 					<a href="https://github.com/GabrielRuizVarela">
@@ -22,16 +25,16 @@ export default function Navbar() {
 			</div>
 			<div className="flex-none">
 				<ul className="menu menu-horizontal p-0">
-					<li>
+					<li className="xs:hidden sm:block">
 						<a href='#about'>About</a>
 					</li>
-					<li>
+					<li className="xs:hidden sm:block">
 						<a href='#projects'>Projects</a>
 					</li>
-					<li>
+					<li className="xs:hidden sm:block">
 						<a href='#skills'>Skills</a>
 					</li>
-					<li>
+					<li className="xs:hidden sm:block">
 						<a href='#contact'>Contact</a>
 					</li>
 					{/* github logo with link */}
@@ -68,6 +71,6 @@ export default function Navbar() {
 					</li>
 				</ul>
 			</div>
-		</div>
+		</motion.div>
 	);
 }

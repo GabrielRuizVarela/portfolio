@@ -1,23 +1,25 @@
 import excel from '../images/excel.png';
 import tp1 from '../images/tp1.jpg';
-import photo from '../images/photo.png';
+import inventory from '../images/inventory.png';
 import video from '../images/video.webm';
 
 export const webProjects = [
   {
     name: 'Excel Filters',
-    description:
-      'Build with React, Redux, TypeScript, Firebase, Tailwind and Vite.',
+    description: 'Build with React, Redux, TypeScript, Firebase, Tailwind.',
     imageSrc: excel,
     imageAlt: 'First project image.',
     href: 'https://gabrielruizvarela.github.io/Excel-Filters/',
+    repo: 'https://github.com/GabrielRuizVarela/Excel-Filters',
   },
   {
-    name: 'A Photo Tagging App',
-    description: 'Build with React, TypeScript, Tailwind.',
-    imageSrc: photo,
+    name: 'Inventory Manager CRUD',
+    description:
+      'Frontend: NextJS, ReactJS, TypeScript and MaterialUI. Backend: NodeJS, Express and MongoDB.',
+    imageSrc: inventory,
     imageAlt: 'Second project image.',
     href: 'https://gabrielruizvarela.github.io/A-Photo-Tagging-App/',
+    repo: 'https://github.com/GabrielRuizVarela/Inventory-Frontend',
   },
 ];
 
