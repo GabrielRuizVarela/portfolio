@@ -1,12 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 // a navbar for my personal portfolio as a web developer
-export default function Navbar() {
+export default function Navbar({
+	setActiveSection,
+}: { setActiveSection: (id: number) => void }) {
 	return (
-		<motion.div 
-    initial={{ y: -100 }}
-    animate={{ y: 0 }}
-    className="navbar bg-black bg-opacity-20 dark:bg-stone900 dark:bg-opacity-60 h-min fixed lg:px-12 z-10">
+		<motion.div
+			initial={{ y: -100 }}
+			animate={{ y: 0 }}
+			className="navbar bg-black bg-opacity-20 dark:bg-stone900 dark:bg-opacity-60 h-min fixed lg:px-12 z-10"
+		>
 			<div className="flex-1">
 				<span className="btn btn-ghost normal-case text-xl">
 					<a href="https://github.com/GabrielRuizVarela">
@@ -26,16 +29,24 @@ export default function Navbar() {
 			<div className="flex-none">
 				<ul className="menu menu-horizontal p-0">
 					<li className="xs:hidden sm:block">
-						<a href='#about'>About</a>
+						<button type="button" onClick={() => setActiveSection(0)}>
+							About
+						</button>
 					</li>
 					<li className="xs:hidden sm:block">
-						<a href='#projects'>Projects</a>
+						<button type="button" onClick={() => setActiveSection(1)}>
+							Projects
+						</button>
 					</li>
 					<li className="xs:hidden sm:block">
-						<a href='#skills'>Skills</a>
+						<button type="button" onClick={() => setActiveSection(3)}>
+							Skills
+						</button>
 					</li>
 					<li className="xs:hidden sm:block">
-						<a href='#contact'>Contact</a>
+						<button type="button" onClick={() => setActiveSection(4)}>
+							Contact
+						</button>
 					</li>
 					{/* github logo with link */}
 					<li>

@@ -10,7 +10,7 @@ export const webProjects = [
       'Frontend: NextJS, ReactJS, TypeScript and MaterialUI. Backend: NodeJS, Express and MongoDB.',
     imageSrc: inventory,
     imageAlt: 'Second project image.',
-    href: 'https://gabrielruizvarela.github.io/A-Photo-Tagging-App/',
+    href: 'https://inventory-frontend-9db1.vercel.app/',
     repo: 'https://github.com/GabrielRuizVarela/Inventory-Frontend',
   },
   {

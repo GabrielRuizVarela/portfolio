@@ -69,7 +69,7 @@ export default function Skills() {
 	return (
 		<div className="bg-zinc-900 dark:bg-indigo-300 py-12 min-h-screen grid content-center w-screen justify-center">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-				<div className="lg:text-center">
+				<div className="text-center">
 					<motion.p
 						viewport={{ once: true }}
 						initial={{ opacity: 0, scale: 0 }}
@@ -81,7 +81,7 @@ export default function Skills() {
 					</motion.p>
 				</div>
 
-				<div className="mt-10 flex flex-wrap container mx-auto px-32 justify-center">
+				<div className="mt-10 flex flex-wrap container mx-auto  justify-center">
 					{features.map((feature, index) => (
 						<motion.div
 							viewport={{ once: true }}
