@@ -14,7 +14,7 @@ export default function Projects() {
 						whileInView={{ opacity: [0, 1], scale: [1.1, 1] }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.35, ease: "easeInOut" }}
-						className="text-2xl pb-16 font-bold text-gray-200 dark:text-gray-900"
+						className="text-2xl pb-16 font-bold text-gray-200 dark:text-gray-900 text-center"
 					>
 						Engineering Projects
 					</motion.h2>
@@ -43,7 +43,8 @@ export default function Projects() {
 										<img
 											src={callout.imageSrc}
 											alt={callout.imageAlt}
-											className="h-full w-full object-contain object-center"
+
+											className="h-full w-full object-cover object-center"
 										/>
 									)}
 								</div>

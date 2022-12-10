@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import React from "react";
 import { motion } from "framer-motion";
 import { webProjects } from "../assets/data/projects";
@@ -7,12 +6,12 @@ import { webProjects } from "../assets/data/projects";
 export default function Projects() {
 	return (
 		<div className="h-min-screen bg-black dark:bg-purple-100  align-center justify-center sm:h-min min-h-screen w-screen">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid content-center">
+			<div className=" max-w-7xl px-4 sm:px-6 lg:px-8 grid content-center mx-8">
 				<div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32 ">
 					<motion.h2
 						viewport={{ once: true }}
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
+						initial={{ opacity: 0, visibility: "hidden" }}
+						whileInView={{ opacity: 1, visibility: "visible" }}
 						transition={{ duration: 0.55, ease: "easeInOut", delay: 0.3 }}
 						className="text-2xl pb-6 font-bold text-gray-200 dark:text-gray-900 "
 					>
@@ -29,10 +28,11 @@ export default function Projects() {
 									<a href={callout.href}>
 										<motion.div
 											viewport={{ once: true }}
-											initial={{ opacity: 0, x: "100%" }}
+											initial={{ opacity: 0, x: "100%", visibility: "hidden" }}
 											whileInView={{
 												x: ["100%", "0%"],
 												opacity: 1,
+												visibility: "visible",
 											}}
 											transition={{ duration: 0.4, delay: 0.5 }}
 											className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 
@@ -47,8 +47,12 @@ export default function Projects() {
 										</motion.div>
 										<motion.h3
 											viewport={{ once: true }}
-											initial={{ opacity: 0, x: "-100%" }}
-											whileInView={{ x: ["-100%", "0%"], opacity: 1 }}
+											initial={{ opacity: 0, x: "-100%", visibility: "hidden" }}
+											whileInView={{
+												x: ["-100%", "0%"],
+												opacity: 1,
+												visibility: "visible",
+											}}
 											className="mt-6 text-sm text-gray-500"
 										>
 											<span className="absolute inset-0" />
@@ -57,34 +61,17 @@ export default function Projects() {
 									</a>
 									<motion.p
 										viewport={{ once: true }}
-										initial={{ opacity: 0, x: "-100%" }}
-										whileInView={{ x: ["-100%", "0%"], opacity: 1 }}
+										initial={{ opacity: 0, x: "-100%", visibility: "hidden" }}
+										whileInView={{
+											x: ["-100%", "0%"],
+											opacity: 1,
+											visibility: "visible",
+										}}
 										className="text-base font-semibold dark:text-gray-900"
 									>
 										{callout.description}
 									</motion.p>
-									{/* <button
-									type="button"
-									className="btn btn-outline hover:scale-105 transition-transform m-2 text-2xl"
-								> */}
 								</div>
-								<motion.button
-									viewport={{ once: true }}
-									initial={{ opacity: 0 }}
-									whileInView={{
-										x: ["20%", "-30%", "40%", "-50%", "0%"],
-										opacity: [0, 1],
-									}}
-									type="button"
-									className="btn btn-outline hover:scale-205 transition-transform m-2 text-2xl"
-								>
-									<a href={callout.repo}>
-										<div className="text-gray-100 dark:text-gray-900 justify-center items-center flex m-2 hover:scale-110 transition-transform">
-											{/* github icon */}
-											<Icon icon="mdi:github" />
-										</div>
-									</a>
-								</motion.button>
 							</div>
 						))}
 					</div>

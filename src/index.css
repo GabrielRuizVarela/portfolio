@@ -27,6 +27,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  overflow-x: clip;
+}
+
 .kenobi {
   position: relative;
 }

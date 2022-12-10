@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion, useAnimationControls } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
@@ -9,21 +9,6 @@ import Skills from "./Skills";
 import "../App.css";
 import Contact from "./Contact";
 import Navbar from "./Navbar";
-
-const variants = {
-	enter: {
-		y: 0,
-		opacity: 1,
-		transition: { duration: 0.5 },
-		transform: "rotateX(0deg)",
-	},
-	exit: {
-		y: -50,
-		opacity: 0,
-		transition: { duration: 0.5 },
-		transform: "rotateX(90deg)",
-	},
-};
 
 const sections = [
 	{
@@ -77,13 +62,9 @@ function Main() {
 	};
 	const [lastTouchY, setLastTouchY] = useState(0);
 	const [scrollTop, setScrollTop] = useState(0);
-	const [scrollBottom, setScrollBottom] = useState(0);
 
 	const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
 		setLastTouchY(e.touches[0].clientY);
-		setScrollBottom(
-			e.currentTarget.scrollHeight - e.currentTarget.offsetHeight,
-		);
 		setScrollTop(e.currentTarget.scrollTop);
 	};
 	const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -155,9 +136,10 @@ function Main() {
 								<button onClick={() => setActiveSection(index)} type='button'>
 									<Icon
 										icon="ant-design:caret-down-outlined"
-										style={{
-											color: activeSection === index ? "#1E90FF" : "#fff",
-										}}
+										// style={{
+										// 	color: activeSection === index ? "#1E90FF" : "#fff",
+										// }}
+                    className={`text-xl cursor-pointer ${ activeSection === index ? "text-purple-900" : "text-white"} ${activeSection === index ? "dark:text-purple-100" : "dark:text-slate-900"}`}
 									/>
 								</button>
 							</div>

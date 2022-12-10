@@ -10,8 +10,8 @@ export default function Contact() {
 					<div className="text-center lg:text-left">
 						<motion.h1
 							viewport={{ once: true }}
-							initial={{ x: "100%" }}
-							whileInView={{ x: ["100%", "0%"] }}
+							initial={{ x: "0%", visibility: "hidden" }}
+							whileInView={{ x: ["100%", "0%"], visibility: "visible" }}
 							transition={{ duration: 0.35, ease: "easeInOut" }}
 							className="text-5xl font-bold"
 						>
@@ -19,8 +19,8 @@ export default function Contact() {
 						</motion.h1>
 						<motion.p
 							viewport={{ once: true }}
-							initial={{ y: "100%" }}
-							whileInView={{ y: ["100%", "0%"] }}
+							initial={{ y: "100%", visibility: "hidden" }}
+							whileInView={{ y: ["100%", "0%"], visibility: "visible" }}
 							transition={{ duration: 0.35, ease: "easeInOut" }}
 							className="py-6"
 						>
@@ -28,11 +28,11 @@ export default function Contact() {
 							with great people and fun projects.
 						</motion.p>
 					</div>
-					<motion.div className="flex flex-col items-center">
+					<motion.div className="flex flex-col items-center min-w-fit">
 						<motion.div
-							initial={{ x: "-100%" }}
+							initial={{ x: "-100%", visibility: "hidden" }}
 							viewport={{ once: true }}
-							whileInView={{ x: ["-100%", "0%"] }}
+							whileInView={{ x: ["-100%", "0%"], visibility: "visible" }}
 							transition={{ duration: 0.35, ease: "easeInOut" }}
 							className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-violet-200 dark:bg-violet-400"
 						>
@@ -71,8 +71,8 @@ export default function Contact() {
 						</motion.div>
 						<motion.div
 							viewport={{ once: true }}
-							initial={{ y: "100%" }}
-							whileInView={{ y: ["100%", "0%"] }}
+							initial={{ y: "100%", visibility: "hidden" }}
+							whileInView={{ y: ["100%", "0%"], visibility: "visible" }}
 							transition={{ duration: 0.35, ease: "easeInOut" }}
 							className="flex gap-4 m-4"
 						>
