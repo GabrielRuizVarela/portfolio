@@ -5,19 +5,21 @@ import { webProjects } from "../assets/data/projects";
 
 export default function Projects() {
 	return (
-		<div className="h-min-screen bg-black dark:bg-purple-100  align-center justify-center sm:h-min min-h-screen w-screen">
+		<div className="h-min-screen bg-black dark:bg-purple-100  align-center justify-center sm:h-min min-h-screen w-screen overflow-x-hidden">
 			<div className=" max-w-7xl px-4 sm:px-6 lg:px-8 grid content-center mx-8">
-				<div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32 ">
+				<div className="mx-auto max-w-2xl py-8 sm:py-24 lg:max-w-none lg:py-3 ">
 					<motion.h2
 						viewport={{ once: true }}
 						initial={{ opacity: 0, visibility: "hidden" }}
 						whileInView={{ opacity: 1, visibility: "visible" }}
 						transition={{ duration: 0.55, ease: "easeInOut", delay: 0.3 }}
-						className="text-2xl pb-6 font-bold text-gray-200 dark:text-gray-900 "
+						className="text-2xl mt-12 font-bold text-gray-200 dark:text-gray-900 "
 					>
 						Web Dev Projects
 					</motion.h2>
-					<div className="mt-6 pt-8 space-y-12 lg:grid lg:grid-cols-2 lg:gap-x-16 xl:justify-evenly lg:space-y-0">
+					<div className="mt-6 pt-8 space-y-12 
+          lg:grid lg:grid-cols-2 lg:gap-x-16 xl:justify-evenly lg:space-y-0
+           ">
 						{webProjects.map((callout) => (
 							<div key={callout.name}>
 								<div
