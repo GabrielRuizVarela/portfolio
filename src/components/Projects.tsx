@@ -5,9 +5,9 @@ import { webProjects } from "../assets/data/projects";
 
 export default function Projects() {
 	return (
-		<div className="h-min-screen bg-black dark:bg-purple-100  align-center justify-center sm:h-min min-h-screen w-screen overflow-x-hidden">
-			<div className=" max-w-7xl px-4 sm:px-6 lg:px-8 grid content-center mx-8">
-				<div className="mx-auto max-w-2xl py-8 sm:py-24 lg:max-w-none lg:py-3 ">
+		<div className="h-min-screen bg-black dark:bg-purple-100 sm:h-min min-h-screen w-screen overflow-x-hidden">
+			<div className=" max-w-7xl px-4 sm:px-6 lg:px-8 grid items-center mx-auto h-screen ">
+				<div className="mx-auto max-w-2xl py-8 sm:py-24 lg:max-w-none lg:py-3  ">
 					<motion.h2
 						viewport={{ once: true }}
 						initial={{ opacity: 0, visibility: "hidden" }}
@@ -17,9 +17,12 @@ export default function Projects() {
 					>
 						Web Dev Projects
 					</motion.h2>
-					<div className="mt-6 pt-8 space-y-12 
+					<div
+						className="mt-6 pt-8 space-y-12 
+            
           lg:grid lg:grid-cols-2 lg:gap-x-16 xl:justify-evenly lg:space-y-0
-           ">
+           "
+					>
 						{webProjects.map((callout) => (
 							<div key={callout.name}>
 								<div
