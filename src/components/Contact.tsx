@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
 	return (
-		<div className="w-screen h-screen flex flex-col justify-center items-center bg-gray-900 text-white gap-8 dark:bg-white dark:text-black">
+		<div className="w-screen h-screen flex flex-col justify-center items-center bg-gray-900 text-white gap-8 dark:bg-white dark:text-black overflow-x-hidden">
 			<div className="hero min-h-screen">
 				<div className="hero-content flex-col lg:flex-row-reverse m-8 lg:ml-16">
 					<div className="text-center lg:text-left">

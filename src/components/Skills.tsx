@@ -12,9 +12,13 @@ const features = [
 		icon: "mdi:language-typescript",
 	},
 	{
-		name: "React",
+		name: "ReactJS",
 		icon: "akar-icons:react-fill",
 	},
+  {
+    name: "React Native",
+    icon: "carbon:logo-react",
+  },
 	{
 		name: "NextJS",
 		icon: "akar-icons:nextjs-fill",
@@ -89,7 +93,7 @@ export default function Skills() {
 							whileInView={{ opacity: [0, 1] }}
 							transition={{ duration: 0.5, delay: index * 0.05 }}
 							key={feature.name}
-							className="drop-shadow-md"
+							className="drop-shadow-md flex flex-col items-center justify-center"
 						>
 							<div className="flex m-2 mb-1 h-12 w-12 items-center justify-center rounded-md bg-indigo-300 dark:bg-zinc-900 text-black dark:text-white">
 								<Icon

@@ -42,24 +42,48 @@ function Main() {
 	const controls = useAnimationControls();
 	const [isScrolling, setIsScrolling] = useState(false);
 	let lastScrollTime = new Date();
-	// const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 	const isMobile = useMediaQuery({ query: "(max-width: 1022px)" });
-	const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-		if (isScrolling) return;
-		const date = new Date();
-		if (Number(date) - Number(lastScrollTime) < 500) return;
-		lastScrollTime = new Date();
+	// const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+	// 	if (isScrolling) return;
+	// 	const date = new Date();
+	// 	if (Number(date) - Number(lastScrollTime) < 500) return;
+	// 	lastScrollTime = new Date();
 
-		setIsScrolling(true);
-		if (e.deltaY > 0) {
-			if (activeSection < sections.length - 1) {
-				setActiveSection(activeSection + 1);
-			}
-		} else if (activeSection > 0) setActiveSection(activeSection - 1);
-		setTimeout(() => {
-			setIsScrolling(false);
-		}, 500);
-	};
+	// 	setIsScrolling(true);
+	// 	if (e.deltaY > 0) {
+	// 		if (activeSection < sections.length - 1) {
+	// 			setActiveSection(activeSection + 1);
+	// 		}
+	// 	} else if (activeSection > 0) setActiveSection(activeSection - 1);
+	// 	setTimeout(() => {
+	// 		setIsScrolling(false);
+	// 	}, 500);
+	// };
+  function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
+    if (isScrolling) return;
+    const date = new Date();
+    if (Number(date) - Number(lastScrollTime) < 500) return;
+    lastScrollTime = new Date();
+  
+    // Verifica si el usuario está al final o al comienzo de la sección actual
+    const isAtBeginning = activeSection > 0 && e.deltaY < 0;
+    const isAtEnd = activeSection < sections.length - 1 && e.deltaY > 0;
+    if (!(isAtBeginning || isAtEnd)) {
+      // Si el usuario no está al final o al comienzo, no hacer nada
+      return;
+    }
+  
+    setIsScrolling(true);
+    if (e.deltaY > 0 ) {
+      setActiveSection(activeSection + 1);
+    } else if (activeSection > 0) {
+      setActiveSection(activeSection - 1);
+    }
+    setTimeout(() => {
+      setIsScrolling(false);
+    }, 500);
+  }
+  
 	const [lastTouchY, setLastTouchY] = useState(0);
 	const [scrollTop, setScrollTop] = useState(0);
 
@@ -136,10 +160,13 @@ function Main() {
 								<button onClick={() => setActiveSection(index)} type='button'>
 									<Icon
 										icon="ant-design:caret-down-outlined"
-										// style={{
-										// 	color: activeSection === index ? "#1E90FF" : "#fff",
-										// }}
-                    className={`text-xl cursor-pointer ${ activeSection === index ? "text-purple-900" : "text-white"} ${activeSection === index ? "dark:text-purple-100" : "dark:text-slate-900"}`}
+										className={`text-xl cursor-pointer ${
+											activeSection === index ? "text-purple-900" : "text-white"
+										} ${
+											activeSection === index
+												? "dark:text-purple-100"
+												: "dark:text-slate-900"
+										}`}
 									/>
 								</button>
 							</div>
