@@ -2,70 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  html {
+    background-color: #080808;
+    color: #e8e8e8;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Libre Franklin', sans-serif;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: #FF2D78;
+    color: #080808;
+  }
 }
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  /* background-color: #242424; */
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+/* Noise texture overlay */
+.noise::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
-body {
-  overflow-x: clip;
-}
-
-.kenobi {
-  position: relative;
-}
-/* .kenobi::after {
-  content: url('./assets/images/hello-there.jpeg');
+/* CRT scanline effect for Lutie card */
+.scanlines::after {
+  content: '';
   position: absolute;
-  width: 10px;
-  height: 10px;
-  left: 0;
-} */
-
-.tooltip {
-  position: relative;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  z-index: 2;
 }
-.tooltip > div {
-  visibility: hidden;
-  opacity: 0;
+
+/* Chunky retro border */
+.retro-border {
+  border: 4px solid #FFE135;
+  box-shadow:
+    8px 8px 0 #FF2D78,
+    -2px -2px 0 #00E5FF;
+}
+
+/* Glitch hover effect */
+.glitch-hover:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(3px, -3px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* Redacted text effect for Office card */
+.redacted {
+  background: linear-gradient(90deg, #4A6FA5 0%, #2A3F5F 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Subtle grid background for Office card */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(74, 111, 165, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 111, 165, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Link underline animation */
+.link-reveal {
+  position: relative;
+  text-decoration: none;
+}
+.link-reveal::after {
+  content: '';
   position: absolute;
-  top: 0;
+  bottom: -2px;
   left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.link-reveal:hover::after {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: center;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  z-index: 1;
-}
-.tooltip:hover > div {
-  visibility: visible;
-  transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  opacity: 1;
 }
