@@ -153,7 +153,7 @@ function OfficeCard() {
 
   return (
     <a
-      href="https://github.com/GabrielRuizVarela/office-of-accountability"
+      href="https://office-of-accountability.org/"
       target="_blank"
       rel="noopener noreferrer"
       className="group block"
