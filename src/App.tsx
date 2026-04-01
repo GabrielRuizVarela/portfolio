@@ -301,6 +301,14 @@ function Footer() {
           >
             lutie.app
           </a>
+          <a
+            href="https://www.linkedin.com/in/gabrielruizvarela/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[11px] hover:text-text-primary transition-colors link-reveal"
+          >
+            LinkedIn
+          </a>
         </div>
       </div>
     </footer>
