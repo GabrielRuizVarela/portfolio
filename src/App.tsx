@@ -140,8 +140,6 @@ function LutieCard() {
    ───────────────────────────────────────────────────── */
 
 function OfficeCard() {
-  const [isHovered, setIsHovered] = useState(false);
-
   const investigations = [
     { id: 'I', name: 'Caso Libra', detail: '$LIBRA memecoin — $251M+ losses' },
     { id: 'II', name: 'Caso Epstein', detail: '7,276 entities mapped' },
@@ -157,8 +155,6 @@ function OfficeCard() {
       target="_blank"
       rel="noopener noreferrer"
       className="group block"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative overflow-hidden grid-bg border border-office-line rounded-sm bg-surface-raised/50 transition-all duration-500 hover:border-office-steel/40">
         {/* Subtle top accent */}
@@ -204,20 +200,20 @@ function OfficeCard() {
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[11px] text-office-steel tracking-wider group-hover:tracking-widest transition-all duration-500">
-              View on GitHub
+          {/* CTAs */}
+          <div className="flex items-center gap-6">
+            <span className="font-mono text-[11px] text-office-steel tracking-wider hover:tracking-widest transition-all duration-500">
+              office-of-accountability.org →
             </span>
-            <span
-              className="text-office-steel/60 transition-all duration-500"
-              style={{
-                transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
-                opacity: isHovered ? 1 : 0.6,
-              }}
+            <a
+              href="https://github.com/GabrielRuizVarela/office-of-accountability"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[11px] text-text-muted/50 hover:text-office-steel tracking-wider transition-all duration-500"
+              onClick={(e) => e.stopPropagation()}
             >
-              →
-            </span>
+              GitHub →
+            </a>
           </div>
         </div>
 
