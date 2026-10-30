@@ -21,10 +21,11 @@ export default {
           cyan: '#00E5FF',
           green: '#39FF14',
         },
-        office: {
-          steel: '#4A6FA5',
-          cold: '#2A3F5F',
-          line: '#1e2d44',
+        despacho: {
+          paper: '#E9E2D0',
+          ink: '#14110D',
+          oxblood: '#9B2C2C',
+          brass: '#B08D57',
         },
       },
       animation: {

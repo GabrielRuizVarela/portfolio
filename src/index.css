@@ -5,6 +5,8 @@
 @layer base {
   html {
     background-color: #080808;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.04'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40Z'/%3E%3Ccircle cx='40' cy='40' r='16'/%3E%3Cpath d='M40 24 L56 40 L40 56 L24 40Z'/%3E%3Cpath d='M20 0 L40 20 M60 0 L80 20 M80 60 L60 80 M20 80 L0 60'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='80' cy='0' r='8'/%3E%3Ccircle cx='0' cy='80' r='8'/%3E%3Ccircle cx='80' cy='80' r='8'/%3E%3Cpath d='M40 0 Q50 20 40 24 Q30 20 40 0' /%3E%3Cpath d='M80 40 Q60 50 56 40 Q60 30 80 40' /%3E%3Cpath d='M40 80 Q30 60 40 56 Q50 60 40 80' /%3E%3Cpath d='M0 40 Q20 30 24 40 Q20 50 0 40' /%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
     color: #e8e8e8;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -23,12 +25,50 @@
   }
 }
 
+/* Dense dot field for main content area */
+.dot-field::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 0.5px, transparent 0.5px);
+  background-size: 16px 16px, 8px 8px;
+  background-position: 0 0, 4px 4px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+}
+
+.dot-field > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mouse-following glow over dots */
+.dot-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.2) 0.5px, transparent 0.5px);
+  background-size: 16px 16px, 8px 8px;
+  background-position: 0 0, 4px 4px;
+  mask-image: radial-gradient(circle 180px at var(--glow-x, 50%) var(--glow-y, 50%), black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 180px at var(--glow-x, 50%) var(--glow-y, 50%), black 0%, transparent 100%);
+}
+
 /* Noise texture overlay */
 .noise::before {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 1;
   pointer-events: none;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
@@ -72,21 +112,6 @@
   60% { transform: translate(-2px, -2px); }
   80% { transform: translate(2px, 2px); }
   100% { transform: translate(0); }
-}
-
-/* Redacted text effect for Office card */
-.redacted {
-  background: linear-gradient(90deg, #4A6FA5 0%, #2A3F5F 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-/* Subtle grid background for Office card */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(74, 111, 165, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 111, 165, 0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
 }
 
 /* Link underline animation */
