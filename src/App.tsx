@@ -338,22 +338,26 @@ function LolDraftCard() {
   const poster = `${import.meta.env.BASE_URL}video/lol-draft-demo-poster.jpg`;
 
   const stats = [
-    { value: '94.3%', label: 'draft actions read exactly (7 recorded Worlds drafts)' },
-    { value: '20/20', label: 'actions exact, KC vs MVK G1, via the live YouTube URL' },
-    { value: 'Top 5', label: 'likeliest champions shown before every pick or ban' },
+    { value: '94.3%', label: 'draft actions exact, video only (7 recorded Worlds drafts)' },
+    { value: '20/20', label: 'actions exact, video only, KC vs MVK G1 via the live YouTube URL' },
+    { value: '<150 ms', label: 'to read all 20 slots of a frame, on CPU' },
   ];
 
-  const pipeline = ['Stream / VOD', 'ffmpeg 2 fps', 'SIFT slot match', 'Draft-order tracker', 'Lolesports check', 'Draft model'];
+  const pipelines = [
+    { label: 'Video', steps: ['yt-dlp → ffmpeg, 2 fps 720p', '20 slot crops', 'SIFT match vs champion art', 'Per-slot state + confidence'] },
+    { label: 'Audio', steps: ['same stream → 16 kHz mono', 'faster-whisper, local', 'Caster mention spotter (ban / pick cues)', 'Optional LLM turn reader'] },
+    { label: 'Fuse', steps: ['Draft-order tracker', 'Lolesports cross-check', 'JSON + SSE API'] },
+  ];
 
   return (
     <div className="group relative overflow-hidden rounded-sm border border-[#7c5cff]/30 bg-[#0f0f14] transition-all duration-500 hover:border-[#7c5cff]/60 hover:shadow-[0_0_40px_-12px_rgba(124,92,255,0.35)]">
       <div className="h-px bg-gradient-to-r from-transparent via-[#7c5cff]/60 to-transparent" />
 
-      <div className="relative z-10 p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 items-center">
+      <div className="relative z-10 p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] gap-8 items-start">
         <div>
           <div className="flex items-center gap-3 mb-6">
             <span className="font-mono text-[10px] text-[#a99bff] tracking-[0.2em] uppercase">
-              Research · Worlds 2026
+              Computer vision · Worlds 2026
             </span>
             <span className="h-px flex-1 bg-[#7c5cff]/25" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#7c5cff]" />
@@ -362,9 +366,15 @@ function LolDraftCard() {
           <h2 className="font-display text-3xl md:text-4xl text-[#ece8dc] mb-2 tracking-tight">
             LoL Draft
           </h2>
-          <p className="font-body text-sm text-[#ece8dc]/70 leading-relaxed mb-6">
-            A League of Legends draft lab for Worlds 2026. Before every pick or ban it shows the five most likely champions and why, then shows the hit or the miss. Past drafts are browsable step by step in 2D and 3D. Models are frozen under a pre-registered plan and logged on games played after the freeze.
+          <p className="font-body text-sm text-[#ece8dc]/70 leading-relaxed mb-4">
+            Two projects I built end to end for Worlds 2026. <span className="text-[#a99bff]">lol-live-capture</span> is an open-source (MIT) capture system that reads the pick/ban draft off a live broadcast, in real time, and turns it into structured data. <span className="text-[#a99bff]">LoL Draft</span> is the draft lab on top of it: before every pick or ban it shows the five likeliest champions and why, then the hit or the miss.
           </p>
+          <ul className="font-body text-[13px] text-[#ece8dc]/70 leading-relaxed mb-6 space-y-1.5">
+            <li>▸ <span className="text-[#ece8dc]">Video:</span> a YouTube or Twitch stream (or a saved video replayed at 1x) goes through yt-dlp and ffmpeg at 2 fps; each overlay slot is cropped and matched against a champion art bank with SIFT features</li>
+            <li>▸ <span className="text-[#ece8dc]">Audio:</span> the same stream is decoded to 16 kHz mono, transcribed locally with faster-whisper in rolling windows biased toward the patch's champion names, and a spotter turns caster speech into ban and pick mentions (aliases like "Monkey King" included), optionally read by an LLM</li>
+            <li>▸ <span className="text-[#ece8dc]">Fusion:</span> audio proposes, image confirms. A caster naming the champion the image sees raises confidence, and a look-alike is swapped only when the casters name the other one and the image still rates it close. A tracker that knows the 20-action order commits a pick only once the draft moves on, so a hover that changes its mind is never recorded</li>
+            <li>▸ <span className="text-[#ece8dc]">Check and serve:</span> the lolesports feed grades the draft when it ends, and every action carries its confidence and the path it came from (image, audio+image, final set), served as JSON and a server-sent event stream</li>
+          </ul>
 
           <div className="grid grid-cols-3 gap-3 mb-6">
             {stats.map((s) => (
@@ -375,20 +385,22 @@ function LolDraftCard() {
             ))}
           </div>
 
-          <p className="font-mono text-[11px] text-[#ece8dc]/60 leading-relaxed mb-3">
-            <span className="text-[#a99bff]">lol-live-capture</span> (open source, MIT) reads the pick/ban overlay off a live broadcast with computer vision, optional caster audio and a cross-check against the lolesports feed.
-          </p>
-          <div className="flex flex-wrap items-center gap-1.5 mb-6 font-mono text-[10px] text-[#ece8dc]/60">
-            {pipeline.map((step, i) => (
-              <span key={step} className="flex items-center gap-1.5">
-                <span className="px-2 py-1 border border-[#ece8dc]/15">{step}</span>
-                {i < pipeline.length - 1 && <span className="text-[#7c5cff]">→</span>}
-              </span>
+          <div className="space-y-2 mb-6 font-mono text-[10px] text-[#ece8dc]/60">
+            {pipelines.map((row) => (
+              <div key={row.label} className="flex flex-wrap items-center gap-1.5">
+                <span className="w-9 text-[#a99bff] uppercase tracking-wider">{row.label}</span>
+                {row.steps.map((step, i) => (
+                  <span key={step} className="flex items-center gap-1.5">
+                    <span className="px-2 py-1 border border-[#ece8dc]/15">{step}</span>
+                    {i < row.steps.length - 1 && <span className="text-[#7c5cff]">→</span>}
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
 
           <div className="flex flex-wrap gap-2 mb-6">
-            {['React', 'FastAPI', 'SQLite', 'OpenCV', 'faster-whisper', 'Cloudflare Pages'].map((tag) => (
+            {['Python', 'OpenCV', 'ffmpeg', 'yt-dlp', 'faster-whisper', 'FastAPI', 'SSE', 'React'].map((tag) => (
               <span key={tag} className="font-mono text-[10px] px-2 py-1 border border-[#7c5cff]/40 text-[#a99bff]/80 uppercase tracking-wider">
                 {tag}
               </span>
@@ -396,11 +408,11 @@ function LolDraftCard() {
           </div>
 
           <div className="flex flex-wrap items-center gap-6 font-mono text-[11px] tracking-wider">
-            <a href="https://lol-draft.pages.dev" target="_blank" rel="noopener noreferrer" className="text-[#a99bff] hover:tracking-widest transition-all duration-500">
-              lol-draft.pages.dev →
+            <a href="https://github.com/GabrielRuizVarela/lol-live-capture" target="_blank" rel="noopener noreferrer" className="text-[#a99bff] hover:tracking-widest transition-all duration-500">
+              lol-live-capture on GitHub →
             </a>
-            <a href="https://github.com/GabrielRuizVarela/lol-live-capture" target="_blank" rel="noopener noreferrer" className="text-[#ece8dc]/60 hover:text-[#ece8dc] transition-colors">
-              github: lol-live-capture
+            <a href="https://lol-draft.pages.dev" target="_blank" rel="noopener noreferrer" className="text-[#ece8dc]/60 hover:text-[#ece8dc] transition-colors">
+              lol-draft.pages.dev (the draft lab)
             </a>
           </div>
         </div>
@@ -409,6 +421,18 @@ function LolDraftCard() {
           <div className="border border-[#7c5cff]/30 bg-black">
             <video src={video} poster={poster} className="block w-full aspect-video" controls playsInline preload="metadata" />
           </div>
+          <p className="font-mono text-[10px] text-[#ece8dc]/45 mt-2">Demo: the LoL Draft lab.</p>
+          <figure className="mt-5">
+            <a href="https://github.com/GabrielRuizVarela/lol-live-capture" target="_blank" rel="noopener noreferrer">
+              <img
+                src={`${import.meta.env.BASE_URL}img/lol-capture-live.jpg`}
+                alt="lol-live-capture in demo mode, mid-draft: bans greyed out, picks locked in gold, the next ban hovering with a dashed outline"
+                className="block w-full border border-[#7c5cff]/30"
+                loading="lazy"
+              />
+            </a>
+            <figcaption className="font-mono text-[10px] text-[#ece8dc]/45 mt-2">lol-live-capture's live board in demo mode (an invented draft, no stream): locked picks, and the next ban shown as a dashed ghost until it commits.</figcaption>
+          </figure>
           <details className="mt-3 font-mono text-[10px] text-[#ece8dc]/45 leading-relaxed">
             <summary className="cursor-pointer hover:text-[#ece8dc]/80">Credits</summary>
             <p className="mt-2">
