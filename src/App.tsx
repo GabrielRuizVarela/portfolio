@@ -107,34 +107,28 @@ function LutieCard() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative overflow-hidden scanlines retro-border rounded-none bg-surface-raised transition-all duration-300 glitch-hover">
-        {/* Hot gradient background */}
-        <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-lutie-pink via-lutie-yellow to-lutie-cyan" />
-
-        {/* Floating pixel decorations */}
-        <div className="absolute top-4 right-4 w-3 h-3 bg-lutie-pink animate-float" />
-        <div className="absolute top-8 right-10 w-2 h-2 bg-lutie-yellow animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-6 left-6 w-2 h-2 bg-lutie-cyan animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-10 right-8 w-3 h-3 bg-lutie-green animate-float" style={{ animationDelay: '0.5s' }} />
+      <div className="relative overflow-hidden retro-border rounded-none bg-lutie-ink transition-all duration-300">
+        {/* Soft ink-to-sky wash */}
+        <div className="absolute inset-0 opacity-[0.07] bg-gradient-to-br from-lutie-rose via-lutie-bone to-lutie-sky" />
 
         <div className="relative z-10 p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 items-center">
           <div>
             {/* Label */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-retro text-[10px] text-lutie-yellow tracking-widest uppercase">
+              <span className="font-retro text-[10px] text-lutie-rose tracking-widest uppercase">
                 Commercial
               </span>
-              <span className="h-px flex-1 bg-lutie-yellow/30" />
-              <span className="font-retro text-[8px] text-lutie-pink animate-blink">
+              <span className="h-px flex-1 bg-lutie-bone/20" />
+              <span className="font-retro text-[8px] text-lutie-rose">
                 ●
               </span>
             </div>
 
             {/* Title */}
-            <h2 className="font-retro text-2xl md:text-3xl text-lutie-yellow mb-1 leading-tight">
+            <h2 className="font-retro text-2xl md:text-3xl text-lutie-bone mb-1 leading-tight">
               LUTIE 2.0
             </h2>
-            <p className="font-retro text-[10px] text-lutie-cyan/80 mb-6 tracking-wider">
+            <p className="font-retro text-[10px] text-lutie-graphite mb-6 tracking-wider">
               LAUNCHING NOV 2026
             </p>
 
@@ -154,7 +148,7 @@ function LutieCard() {
               {['Next.js', 'Supabase', 'Cloudflare Workers', 'Vercel AI SDK', 'MCP'].map((tag) => (
                 <span
                   key={tag}
-                  className="font-mono text-[10px] px-2 py-1 border-2 border-lutie-pink/50 text-lutie-pink/80 uppercase tracking-wider"
+                  className="font-mono text-[10px] px-2 py-1 border-2 border-lutie-rose/40 text-lutie-rose uppercase tracking-wider"
                 >
                   {tag}
                 </span>
@@ -169,11 +163,11 @@ function LutieCard() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2"
             >
-              <span className="font-retro text-[10px] text-lutie-green uppercase tracking-widest group-hover:tracking-[0.3em] transition-all duration-300">
+              <span className="font-retro text-[10px] text-lutie-bone uppercase tracking-widest group-hover:tracking-[0.3em] transition-all duration-300">
                 Visit lutie.app
               </span>
               <span
-                className="text-lutie-green transition-transform duration-300"
+                className="text-lutie-rose transition-transform duration-300"
                 style={{ transform: isHovered ? 'translateX(4px)' : 'translateX(0)' }}
               >
                 →
@@ -183,7 +177,7 @@ function LutieCard() {
               href="https://www.instagram.com/lutie.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-retro text-[10px] text-lutie-pink/80 hover:text-lutie-pink uppercase tracking-widest transition-colors"
+              className="font-retro text-[10px] text-lutie-rose/80 hover:text-lutie-rose uppercase tracking-widest transition-colors"
             >
               @lutie.app
             </a>
@@ -192,7 +186,7 @@ function LutieCard() {
 
           {/* Demo video */}
           <div id="lutie-demo">
-            <div className="border-2 border-lutie-cyan/40 bg-black">
+            <div className="border-2 border-lutie-sky/30 bg-black">
               <video
                 src={video}
                 poster={poster}
@@ -216,11 +210,11 @@ function LutieCard() {
         </div>
 
         {/* Bottom accent bar */}
-        <div className="h-1 bg-gradient-to-r from-lutie-pink via-lutie-yellow to-lutie-cyan" />
+        <div className="h-1 bg-gradient-to-r from-lutie-rose via-lutie-bone to-lutie-sky" />
       </div>
 
       {/* Shadow block — 90s offset */}
-      <div className="h-2 mx-2 bg-lutie-pink/10 -mt-0" />
+      <div className="h-2 mx-2 bg-lutie-rose/20 -mt-0" />
     </div>
   );
 }
@@ -518,7 +512,7 @@ function Footer() {
             href="https://lutie.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[11px] hover:text-lutie-yellow transition-colors link-reveal"
+            className="font-mono text-[11px] hover:text-lutie-rose transition-colors link-reveal"
           >
             lutie.app
           </a>

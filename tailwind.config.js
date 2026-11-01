@@ -16,10 +16,13 @@ export default {
         'text-primary': '#e8e8e8',
         'text-muted': '#888888',
         lutie: {
-          pink: '#FF2D78',
-          yellow: '#FFE135',
-          cyan: '#00E5FF',
-          green: '#39FF14',
+          ink: '#12111c',
+          ink2: '#1c1b2c',
+          bone: '#eee9df',
+          graphite: '#9a97b0',
+          rose: '#e689a8',
+          rosedeep: '#cf3f74',
+          sky: '#a0e0f0',
         },
         despacho: {
           paper: '#E9E2D0',
