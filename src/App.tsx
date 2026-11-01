@@ -85,6 +85,9 @@ function Projects() {
       <div className="lg:col-span-2">
         <DespachoCard />
       </div>
+      <div className="lg:col-span-2">
+        <LolDraftCard />
+      </div>
     </div>
   );
 }
@@ -188,17 +191,27 @@ function LutieCard() {
           </div>
 
           {/* Demo video */}
-          <div id="lutie-demo" className="border-2 border-lutie-cyan/40 bg-black">
-            <video
-              src={video}
-              poster={poster}
-              className="block w-full aspect-video"
-              controls
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            />
+          <div id="lutie-demo">
+            <div className="border-2 border-lutie-cyan/40 bg-black">
+              <video
+                src={video}
+                poster={poster}
+                className="block w-full aspect-video"
+                controls
+                playsInline
+                preload="metadata"
+              />
+            </div>
+            <details className="mt-3 font-mono text-[10px] text-text-primary/50 leading-relaxed">
+              <summary className="cursor-pointer hover:text-text-primary/80">Credits</summary>
+              <p className="mt-2">
+                Demo recorded on Lutie's staging app with a fictional patient. Voz sintética generada con Chatterbox; referencia de voz: grabación de un voluntario anónimo (hablante arm_07049) del conjunto{' '}
+                <a className="underline" href="https://www.openslr.org/61/" target="_blank" rel="noopener noreferrer">OpenSLR SLR61</a>{' '}
+                (Google), licencia{' '}
+                <a className="underline" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>
+                ; modificada: solo se usó como referencia, la locución es audio sintético nuevo. Música: «Bobbing», Stereologue. Tipografías: Archivo y Noto Sans Mono (SIL OFL 1.1).
+              </p>
+            </details>
           </div>
         </div>
 
@@ -235,17 +248,31 @@ function DespachoCard() {
 
       <div className="relative z-10 p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-8 items-center">
         {/* Demo video */}
-        <div id="despacho-demo" className="order-last lg:order-first border border-despacho-brass/30 bg-black">
-          <video
-            src={video}
-            poster={poster}
-            className="block w-full aspect-video"
-            controls
-            playsInline
-            preload="metadata"
-          >
-            <track kind="captions" src={captions} srcLang="es" label="Español" />
-          </video>
+        <div id="despacho-demo" className="order-last lg:order-first">
+          <div className="border border-despacho-brass/30 bg-black">
+            <video
+              src={video}
+              poster={poster}
+              className="block w-full aspect-video"
+              controls
+              playsInline
+              preload="metadata"
+            >
+              <track kind="captions" src={captions} srcLang="es" label="Español" default />
+            </video>
+          </div>
+          <details className="mt-3 font-mono text-[10px] text-despacho-paper/45 leading-relaxed">
+            <summary className="cursor-pointer hover:text-despacho-paper/80">Credits</summary>
+            <p className="mt-2">
+              Fictional parties and data; court rulings shown are public Tucumán case law with names blurred. Voz sintética generada con Chatterbox; referencia de voz: grabación de un voluntario anónimo (hablante arm_07049) del conjunto{' '}
+              <a className="underline" href="https://www.openslr.org/61/" target="_blank" rel="noopener noreferrer">OpenSLR SLR61</a>{' '}
+              (Google), licencia{' '}
+              <a className="underline" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>
+              ; modificada: solo se usó como referencia, la locución es audio sintético nuevo. Música: Preludio de la Suite para violonchelo n.º 1 (BWV 1007) de J. S. Bach, interpretación «Played by Chris», dominio público (CC0),{' '}
+              <a className="underline" href="https://commons.wikimedia.org/wiki/File:Bach_Cello_Suite_1_Prelude_(BWV_1007)_Played_by_Chris.ogg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              . Tipografías: Cormorant, IBM Plex Mono, Archivo y Source Serif 4 (SIL OFL 1.1).
+            </p>
+          </details>
         </div>
 
         <div>
@@ -296,6 +323,98 @@ function DespachoCard() {
           >
             despacho-beta.lutie.app →
           </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────
+   LOL DRAFT — bone paper, ink, one violet signal
+   ───────────────────────────────────────────────────── */
+
+function LolDraftCard() {
+  const video = `${import.meta.env.BASE_URL}video/lol-draft-demo.mp4`;
+  const poster = `${import.meta.env.BASE_URL}video/lol-draft-demo-poster.jpg`;
+
+  const stats = [
+    { value: '94.3%', label: 'draft actions read exactly (7 recorded Worlds drafts)' },
+    { value: '20/20', label: 'actions exact, KC vs MVK G1, via the live YouTube URL' },
+    { value: 'Top 5', label: 'likeliest champions shown before every pick or ban' },
+  ];
+
+  const pipeline = ['Stream / VOD', 'ffmpeg 2 fps', 'SIFT slot match', 'Draft-order tracker', 'Lolesports check', 'Draft model'];
+
+  return (
+    <div className="group relative overflow-hidden rounded-sm border border-[#7c5cff]/30 bg-[#0f0f14] transition-all duration-500 hover:border-[#7c5cff]/60 hover:shadow-[0_0_40px_-12px_rgba(124,92,255,0.35)]">
+      <div className="h-px bg-gradient-to-r from-transparent via-[#7c5cff]/60 to-transparent" />
+
+      <div className="relative z-10 p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 items-center">
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono text-[10px] text-[#a99bff] tracking-[0.2em] uppercase">
+              Research · Worlds 2026
+            </span>
+            <span className="h-px flex-1 bg-[#7c5cff]/25" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#7c5cff]" />
+          </div>
+
+          <h2 className="font-display text-3xl md:text-4xl text-[#ece8dc] mb-2 tracking-tight">
+            LoL Draft
+          </h2>
+          <p className="font-body text-sm text-[#ece8dc]/70 leading-relaxed mb-6">
+            A League of Legends draft lab for Worlds 2026. Before every pick or ban it shows the five most likely champions and why, then shows the hit or the miss. Past drafts are browsable step by step in 2D and 3D. Models are frozen under a pre-registered plan and logged on games played after the freeze.
+          </p>
+
+          <div className="grid grid-cols-3 gap-3 mb-6">
+            {stats.map((s) => (
+              <div key={s.label} className="border-l border-[#7c5cff]/35 pl-3">
+                <div className="font-display text-xl text-[#ece8dc]">{s.value}</div>
+                <div className="font-mono text-[10px] text-[#ece8dc]/45 leading-tight mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <p className="font-mono text-[11px] text-[#ece8dc]/60 leading-relaxed mb-3">
+            <span className="text-[#a99bff]">lol-live-capture</span> (open source, MIT) reads the pick/ban overlay off a live broadcast with computer vision, optional caster audio and a cross-check against the lolesports feed.
+          </p>
+          <div className="flex flex-wrap items-center gap-1.5 mb-6 font-mono text-[10px] text-[#ece8dc]/60">
+            {pipeline.map((step, i) => (
+              <span key={step} className="flex items-center gap-1.5">
+                <span className="px-2 py-1 border border-[#ece8dc]/15">{step}</span>
+                {i < pipeline.length - 1 && <span className="text-[#7c5cff]">→</span>}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-6">
+            {['React', 'FastAPI', 'SQLite', 'OpenCV', 'faster-whisper', 'Cloudflare Pages'].map((tag) => (
+              <span key={tag} className="font-mono text-[10px] px-2 py-1 border border-[#7c5cff]/40 text-[#a99bff]/80 uppercase tracking-wider">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-6 font-mono text-[11px] tracking-wider">
+            <a href="https://lol-draft.pages.dev" target="_blank" rel="noopener noreferrer" className="text-[#a99bff] hover:tracking-widest transition-all duration-500">
+              lol-draft.pages.dev →
+            </a>
+            <a href="https://github.com/GabrielRuizVarela/lol-live-capture" target="_blank" rel="noopener noreferrer" className="text-[#ece8dc]/60 hover:text-[#ece8dc] transition-colors">
+              github: lol-live-capture
+            </a>
+          </div>
+        </div>
+
+        <div id="lol-draft-demo">
+          <div className="border border-[#7c5cff]/30 bg-black">
+            <video src={video} poster={poster} className="block w-full aspect-video" controls playsInline preload="metadata" />
+          </div>
+          <details className="mt-3 font-mono text-[10px] text-[#ece8dc]/45 leading-relaxed">
+            <summary className="cursor-pointer hover:text-[#ece8dc]/80">Credits</summary>
+            <p className="mt-2">
+              Footage of the public LoL Draft site; real Worlds 2026 drafts from the Leaguepedia record, no personal data. Not endorsed by Riot Games. Fonts: Bricolage Grotesque, JetBrains Mono and Instrument Serif (SIL OFL 1.1). Music: track supplied by the author (free_fixed.mp3).
+            </p>
+          </details>
         </div>
       </div>
     </div>
