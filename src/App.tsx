@@ -59,7 +59,7 @@ function Header() {
             Gabriel Ruiz Varela
           </h1>
           <p className="font-mono text-sm text-text-muted mt-2 tracking-wide">
-            AI product engineer · legal RAG & nutrition SaaS
+            Developer
           </p>
         </div>
         <a
@@ -134,7 +134,7 @@ function LutieCard() {
 
             {/* Description */}
             <p className="font-body text-sm text-text-primary/90 leading-relaxed mb-4">
-              Nutrition planning SaaS for professionals. Spanish-first, mobile-first PWA.
+              Nutrition planning SaaS for professionals. Spanish-first and mobile-first.
             </p>
             <ul className="font-body text-[13px] text-text-primary/75 leading-relaxed mb-6 space-y-1.5">
               <li>▸ 103 typed AI capabilities shared by the in-app assistant and a hosted MCP server</li>
