@@ -174,7 +174,7 @@ function LutieCard() {
               </span>
             </a>
             <a
-              href="https://www.instagram.com/lutie.app/"
+              href="https://www.instagram.com/lutie.arg/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-retro text-[10px] text-lutie-rose/80 hover:text-lutie-rose uppercase tracking-widest transition-colors"
