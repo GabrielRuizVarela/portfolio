@@ -86,6 +86,9 @@ function Projects() {
         <DespachoCard />
       </div>
       <div className="lg:col-span-2">
+        <VacaMuertaCard />
+      </div>
+      <div className="lg:col-span-2">
         <LolDraftCard />
       </div>
     </div>
@@ -326,6 +329,108 @@ function DespachoCard() {
 /* ─────────────────────────────────────────────────────
    LOL DRAFT — bone paper, ink, one violet signal
    ───────────────────────────────────────────────────── */
+
+function VacaMuertaCard() {
+  const video = `${import.meta.env.BASE_URL}video/vaca-muerta-demo.mp4`;
+  const poster = `${import.meta.env.BASE_URL}video/vaca-muerta-demo-poster.jpg`;
+  const site = 'https://vaca-muerta-en-datos.gabrielruizvarela.workers.dev';
+
+  const stats = [
+    { value: '2,094', label: 'fracture events next to producing wells, from public monthly data' },
+    { value: '2', label: 'US basins where the same pre-committed test was rerun' },
+    { value: '1,200+', label: 'automated tests; every figure in the text checked against the warehouse' },
+  ];
+
+  const pipelines = [
+    { label: 'Data', steps: ['Energy secretariat open data', 'Hash-versioned raw', 'DuckDB staging → facts', 'Blocking quality checks'] },
+    { label: 'Study', steps: ['Parent / child well pairs', 'Event study vs 2–5 km controls', 'Placebo + permutation', 'Rule committed first'] },
+    { label: 'Read', steps: ['Claims check', 'Report + 3D basin', 'Question agent (MCP)'] },
+  ];
+
+  return (
+    <div className="group relative overflow-hidden rounded-sm border border-[#d9973a]/30 bg-[#12161a] transition-all duration-500 hover:border-[#d9973a]/60 hover:shadow-[0_0_40px_-12px_rgba(217,151,58,0.35)]">
+      <div className="h-px bg-gradient-to-r from-transparent via-[#d9973a]/60 to-transparent" />
+
+      <div className="relative z-10 p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] gap-8 items-start">
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono text-[10px] text-[#e8b46a] tracking-[0.2em] uppercase">
+              Data engineering · Public energy data
+            </span>
+            <span className="h-px flex-1 bg-[#d9973a]/25" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#d9973a]" />
+          </div>
+
+          <h2 className="font-display text-3xl md:text-4xl text-[#ece8dc] mb-2 tracking-tight">
+            Vaca Muerta en datos
+          </h2>
+          <p className="font-body text-sm text-[#ece8dc]/70 leading-relaxed mb-4">
+            An independent study of Argentina's Vaca Muerta shale, built only on the monthly public data of the national energy secretariat. The question: when a new well is fractured, what happens to the wells next to it that were already producing? I built it end to end, from ingestion to the published pages, and every decision rule is committed before the run it judges.
+          </p>
+          <ul className="font-body text-[13px] text-[#ece8dc]/70 leading-relaxed mb-6 space-y-1.5">
+            <li>▸ <span className="text-[#ece8dc]">Data:</span> each download is kept immutable by date and hash, modelled in DuckDB from typed staging tables to well, well-month and event facts, with table lineage; blocking quality checks stop a build before anything is published</li>
+            <li>▸ <span className="text-[#ece8dc]">Study:</span> an event study pairs each new (child) well with the producing (parent) wells within 1 km and compares them with control wells 2 to 5 km away, then tries to break the result with fake fracture dates and permutations</li>
+            <li>▸ <span className="text-[#ece8dc]">Honest verdicts:</span> each question gets a closed verdict (holds, not firm, does not predict, no sample), and the same pre-committed test was rerun in Colorado and Wyoming</li>
+            <li>▸ <span className="text-[#ece8dc]">Read it:</span> a front page in Spanish, a report for an operator, a 3D replay of the basin month by month in WebGL, and a natural-language question agent with typed read-only tools, also served as an MCP server</li>
+          </ul>
+
+          <div className="grid grid-cols-3 gap-3 mb-6">
+            {stats.map((s) => (
+              <div key={s.label} className="border-l border-[#d9973a]/35 pl-3">
+                <div className="font-display text-xl text-[#ece8dc]">{s.value}</div>
+                <div className="font-mono text-[10px] text-[#ece8dc]/45 leading-tight mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-2 mb-6 font-mono text-[10px] text-[#ece8dc]/60">
+            {pipelines.map((row) => (
+              <div key={row.label} className="flex flex-wrap items-center gap-1.5">
+                <span className="w-9 text-[#e8b46a] uppercase tracking-wider">{row.label}</span>
+                {row.steps.map((step, i) => (
+                  <span key={step} className="flex items-center gap-1.5">
+                    <span className="px-2 py-1 border border-[#ece8dc]/15">{step}</span>
+                    {i < row.steps.length - 1 && <span className="text-[#d9973a]">→</span>}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-6">
+            {['Python', 'DuckDB', 'SQL', 'pytest', 'MCP', 'WebGL', 'Cloudflare'].map((tag) => (
+              <span key={tag} className="font-mono text-[10px] px-2 py-1 border border-[#d9973a]/40 text-[#e8b46a]/80 uppercase tracking-wider">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-6 font-mono text-[11px] tracking-wider">
+            <a href={site} target="_blank" rel="noopener noreferrer" className="text-[#e8b46a] hover:tracking-widest transition-all duration-500">
+              Open the study →
+            </a>
+            <a href={`${site}/mundo`} target="_blank" rel="noopener noreferrer" className="text-[#ece8dc]/60 hover:text-[#ece8dc] transition-colors">
+              The basin in 3D
+            </a>
+          </div>
+        </div>
+
+        <div id="vaca-muerta-demo">
+          <div className="border border-[#d9973a]/30 bg-black">
+            <video src={video} poster={poster} className="block w-full aspect-video" controls playsInline preload="metadata" />
+          </div>
+          <p className="font-mono text-[10px] text-[#ece8dc]/45 mt-2">Demo: the guided 3D tour, from the first wells in 2011 to one fracture event and its neighbours.</p>
+          <details className="mt-3 font-mono text-[10px] text-[#ece8dc]/45 leading-relaxed">
+            <summary className="cursor-pointer hover:text-[#ece8dc]/80">Credits</summary>
+            <p className="mt-2">
+              Production and fracture data: Secretaría de Energía de la Nación, open data. Ground imagery: Copernicus Sentinel-2 (December 2025); the site's base-map panel lists every source and licence. A personal project, not affiliated with or endorsed by any company.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function LolDraftCard() {
   const video = `${import.meta.env.BASE_URL}video/lol-draft-demo.mp4`;
