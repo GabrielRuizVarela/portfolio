@@ -86,9 +86,6 @@ function Projects() {
         <DespachoCard />
       </div>
       <div className="lg:col-span-2">
-        <TryOnClothesCard />
-      </div>
-      <div className="lg:col-span-2">
         <LolDraftCard />
       </div>
     </div>
@@ -320,110 +317,6 @@ function DespachoCard() {
           >
             despacho-beta.lutie.app →
           </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────
-   TRY-ON-CLOTHES — raw denim indigo, chalk, one sand signal
-   ───────────────────────────────────────────────────── */
-
-const TRY_ON_DEMO = 'https://try-on-clothes.gabrielruizvarela.workers.dev';
-
-function TryOnClothesCard() {
-  const video = `${import.meta.env.BASE_URL}video/try-on-clothes-demo.mp4`;
-  const poster = `${import.meta.env.BASE_URL}video/try-on-clothes-demo-poster.jpg`;
-
-  const stats = [
-    { value: '0.1 mm', label: 'body measurements read from the mesh vs an independent method (20 bodies)' },
-    { value: '0.002 mm', label: 'length mismatch between seams sewn together, drafted patterns, all 20 bodies' },
-    { value: '85.9%', label: 'Cusick drape coefficient of the simulated denim, 8 folds' },
-  ];
-
-  const pipelines = [
-    { label: 'Body', steps: ['~8 tape measurements', 'parametric 3D body (Anny)', 'measured back off the mesh'] },
-    { label: 'Cut', steps: ['jeans pattern drafted to the body', 'panel meshes', 'seams paired vertex to vertex'] },
-    { label: 'Sew', steps: ['flat panels sewn on the body', 'GPU contact solver (IPC)', 'fit gates', 'close / loose map'] },
-  ];
-
-  return (
-    <div className="group relative overflow-hidden rounded-sm border border-[#3b5ba5]/35 bg-[#0d1220] transition-all duration-500 hover:border-[#3b5ba5]/70 hover:shadow-[0_0_40px_-12px_rgba(59,91,165,0.45)]">
-      <div className="h-px bg-gradient-to-r from-transparent via-[#e4d6ba]/50 to-transparent" />
-
-      <div className="relative z-10 p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] gap-8 items-start">
-        <div>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono text-[10px] text-[#e4d6ba] tracking-[0.2em] uppercase">
-              Cloth simulation · 3D bodies · pattern making
-            </span>
-            <span className="h-px flex-1 bg-[#3b5ba5]/30" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#e4d6ba]" />
-          </div>
-
-          <h2 className="font-display text-3xl md:text-4xl text-[#eef0f4] mb-2 tracking-tight">
-            try-on-clothes
-          </h2>
-          <p className="font-body text-sm text-[#eef0f4]/70 leading-relaxed mb-4">
-            See how a real garment sits on a real body before you cut, buy or sew. From a handful of tape measurements it builds a 3D body, drafts a jeans pattern for it, sews the panels together in a cloth simulator and shows where the jeans sit close and where they stand off, in millimetres. The garment is judged, never the body: no body-type label, no score, no "ideal" size.
-          </p>
-          <ul className="font-body text-[13px] text-[#eef0f4]/70 leading-relaxed mb-6 space-y-1.5">
-            <li>▸ <span className="text-[#eef0f4]">Bodies:</span> 20 synthetic bodies from Anny (NAVER LABS Europe) spread over 8 shape axes; waist, hip, seat, thigh, rise and inseam are measured back off each mesh and checked against an analytic phantom and an independent method</li>
-            <li>▸ <span className="text-[#eef0f4]">Pattern:</span> a drafter turns the measurements into front, back and waistband panels with named edges, notches and grain; the crotch curve is solved so the seam length matches the body plus ease</li>
-            <li>▸ <span className="text-[#eef0f4]">Cloth:</span> rigid denim checked against virtual Cusick drape and cantilever tests, then the flat panels are sewn and settled on the body with GPU contact solvers (ZOZO's ppf-contact-solver, libuipc), so cloth and body never intersect</li>
-            <li>▸ <span className="text-[#eef0f4]">Privacy by construction:</span> only generated bodies ever enter the repository; commit and push hooks refuse meshes, images and body data anywhere else</li>
-          </ul>
-
-          <div className="grid grid-cols-3 gap-3 mb-6">
-            {stats.map((s) => (
-              <div key={s.label} className="border-l border-[#e4d6ba]/35 pl-3">
-                <div className="font-display text-xl text-[#eef0f4]">{s.value}</div>
-                <div className="font-mono text-[10px] text-[#eef0f4]/45 leading-tight mt-1">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-2 mb-6 font-mono text-[10px] text-[#eef0f4]/60">
-            {pipelines.map((row) => (
-              <div key={row.label} className="flex flex-wrap items-center gap-1.5">
-                <span className="w-9 text-[#e4d6ba] uppercase tracking-wider">{row.label}</span>
-                {row.steps.map((step, i) => (
-                  <span key={step} className="flex items-center gap-1.5">
-                    <span className="px-2 py-1 border border-[#eef0f4]/15">{step}</span>
-                    {i < row.steps.length - 1 && <span className="text-[#3b5ba5]">→</span>}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            {['Python', 'NumPy', 'SciPy', 'trimesh', 'libuipc', 'ppf-contact-solver', 'Blender', 'three.js'].map((tag) => (
-              <span key={tag} className="font-mono text-[10px] px-2 py-1 border border-[#3b5ba5]/50 text-[#e4d6ba]/80 uppercase tracking-wider">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-6 font-mono text-[11px] tracking-wider">
-            <a href={TRY_ON_DEMO} target="_blank" rel="noopener noreferrer" className="text-[#e4d6ba] hover:tracking-widest transition-all duration-500">
-              Open the 3D demo →
-            </a>
-          </div>
-        </div>
-
-        <div id="try-on-clothes-demo">
-          <div className="border border-[#3b5ba5]/35 bg-black">
-            <video src={video} poster={poster} className="block w-full aspect-video" controls playsInline preload="metadata" />
-          </div>
-          <p className="font-mono text-[10px] text-[#eef0f4]/45 mt-2">Demo: picking a body, turning the model, the drafted pattern.</p>
-          <details className="mt-3 font-mono text-[10px] text-[#eef0f4]/45 leading-relaxed">
-            <summary className="cursor-pointer hover:text-[#eef0f4]/80">Credits</summary>
-            <p className="mt-2">
-              Synthetic bodies generated with Anny (Apache-2.0 code, CC0 assets); no real person appears. Cloth solvers: ppf-contact-solver (ZOZO, Apache-2.0) and libuipc (Apache-2.0).
-            </p>
-          </details>
         </div>
       </div>
     </div>
