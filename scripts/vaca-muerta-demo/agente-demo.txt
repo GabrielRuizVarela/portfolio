@@ -1,0 +1,38 @@
+Demo del agente de Vaca Muerta: 5 preguntas, una por tipo
+Datos a 2026-10; enrutado según la evaluación registrada, sin modelo; la operación se ejecuta en vivo contra el warehouse
+Preguntas de agente/eval/preguntas.jsonl, rutas de agente/eval/resultados/holdout.json
+
+[1] producción
+Pregunta: ¿Cuántos kbbl/d hace Vista Energy Argentina actualmente?
+Operación: produccion_vm
+Argumentos: {"mes": null, "operador": "Vista"}
+Respuesta: Vista produjo 86,9 kbbl/d de petróleo y 1,4 MMm3/d de gas en 2026-10, con 253 pozos activos (12,3% del petróleo de la formación).
+Cita: tablas mart_vm_mensual; datos a 2026-10; hash del crudo fractura_adjunto_iv ff95734bf485, produccion_no_convencional e5d7ba35139b, trayectorias_pozo 83093dc4b7ba
+
+[2] consulta de eventos
+Pregunta: Listame los eventos de fractura del pozo TAU.Nq.AP-1089(h)
+Operación: eventos_pozo
+Argumentos: {"sigla": "TAU.Nq.AP-1089(h)", "tipo": "fractura"}
+Respuesta: TAU.Nq.AP-1089(h): 1 evento de tipo fractura en el dato público (fractura 1).
+Cita: tablas dim_pozo, fct_evento; datos a 2026-10; hash del crudo fractura_adjunto_iv ff95734bf485, produccion_no_convencional e5d7ba35139b, trayectorias_pozo 83093dc4b7ba
+
+[3] costo de interferencia
+Pregunta: ¿Cuánto petróleo se perdería por interferencia si se fractura el pad p164930?
+Operación: costo_interferencia
+Argumentos: {"fecha": null, "lat": null, "lon": null, "pad": "p164930"}
+Respuesta: Fractura en el pad p164930, 2026-10: 12 padres en producción a menos de 1 km; diferido esperado 53.525 bbl en los meses 0 a 6 contra control de igual edad.
+Cita: tablas fct_produccion, int_pozo_ubicacion, mart_anisotropia_area, mart_costo_coef, mart_costo_cv, mart_costo_residuales; datos a 2026-10; hash del crudo fractura_adjunto_iv ff95734bf485, produccion_no_convencional e5d7ba35139b, trayectorias_pozo 83093dc4b7ba
+
+[4] robustez
+Pregunta: ¿El eje de interferencia se sostiene si se deja afuera La Amarga Chica?
+Operación: robustez_eje
+Argumentos: {"subconjunto": "sin La Amarga Chica"}
+Respuesta: Sin LA AMARGA CHICA (1.476 eventos): eje de 98,2 grados, IC 95% de 61,5 a 130,1, p de permutación 0,102.
+Cita: tablas mart_robustez_eje; datos a 2026-10; hash del crudo fractura_adjunto_iv ff95734bf485, produccion_no_convencional e5d7ba35139b, trayectorias_pozo 83093dc4b7ba
+
+[5] abstención
+Pregunta: Pronóstico de producción de gas para el invierno de 2027
+Operación: abstener (ninguna operación del catálogo responde esto)
+Argumentos: {}
+Respuesta: No puedo responder eso con estos datos. Los datos son históricos (producción mensual declarada, fracturas y eventos de pozo) y no incluyen pronósticos, precios, tarifas ni datos laborales.
+Cita: ninguna, no se ejecutó ninguna operación y no se informa ninguna cifra
