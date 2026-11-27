@@ -338,7 +338,7 @@ function VacaMuertaCard() {
   const stats = [
     { value: '2,094', label: 'fracture events next to producing wells, from public monthly data' },
     { value: '2', label: 'US basins where the same pre-committed test was rerun' },
-    { value: '1,200+', label: 'automated tests; every figure in the text checked against the warehouse' },
+    { value: '1,200+', label: 'automated tests, code public on GitHub; every figure in the text checked against the warehouse' },
   ];
 
   const pipelines = [
@@ -365,7 +365,7 @@ function VacaMuertaCard() {
             Vaca Muerta en datos
           </h2>
           <p className="font-body text-sm text-[#ece8dc]/70 leading-relaxed mb-4">
-            An independent study of Argentina's Vaca Muerta shale, built only on the monthly public data of the national energy secretariat. The question: when a new well is fractured, what happens to the wells next to it that were already producing? I built it end to end, from ingestion to the published pages, and every decision rule is committed before the run it judges.
+            An independent study of Argentina's Vaca Muerta shale, built only on the monthly public data of the national energy secretariat. The question: when a new well is fractured, what happens to the wells next to it that were already producing? I built it solo, end to end, by directing AI coding agents (I planned, reviewed and merged the work in 146 pull requests), from ingestion to the published pages, and the decision rules I could write down are committed before the run they judge; later additions are marked as such.
           </p>
           <ul className="font-body text-[13px] text-[#ece8dc]/70 leading-relaxed mb-6 space-y-1.5">
             <li>▸ <span className="text-[#ece8dc]">Data:</span> each download is kept immutable by date and hash, modelled in DuckDB from typed staging tables to well, well-month and event facts, with table lineage; blocking quality checks stop a build before anything is published</li>
@@ -411,6 +411,9 @@ function VacaMuertaCard() {
             </a>
             <a href={`${site}/mundo`} target="_blank" rel="noopener noreferrer" className="text-[#ece8dc]/60 hover:text-[#ece8dc] transition-colors">
               The basin in 3D
+            </a>
+            <a href="https://github.com/GabrielRuizVarela/vaca-muerta-en-datos" target="_blank" rel="noopener noreferrer" className="text-[#ece8dc]/60 hover:text-[#ece8dc] transition-colors">
+              The code on GitHub
             </a>
           </div>
         </div>
